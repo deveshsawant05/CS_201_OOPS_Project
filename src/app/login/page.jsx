@@ -5,6 +5,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Facebook, Twitter, Github } from "lucide-react"
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link"
+import Logo from "@/components/Logo"
 
 import { Montserrat } from "next/font/google";
 import { useRouter } from 'next/navigation'; // Import useRouter from Next.js
@@ -26,14 +27,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className={`${montserratFont.className} bg-[--background] min-h-screen flex flex-col md:flex-row`}>
-      <div className="bg-[--background] md:w-2/5 p-8 text-white flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold mb-4 text-[--primary] ">Health<span className="text-4xl font-bold mb-4 text-[--secondary]">Mate</span></h1>
-        <p className="text-[--foreground] text-center text-lg">
+    <div className={`${montserratFont.className} bg-[--second] min-h-screen flex flex-col md:flex-row`}>
+      <div className="md:w-2/5 p-8 flex flex-col items-center justify-center">
+        <Logo />
+        <p className="text-[--foreground] text-center text-lg mt-5">
           Discover the power of personalized health insights and seamless tracking with HealthMate.
         </p>
       </div>
-      <div className="bg-white md:w-3/5 p-8 flex flex-col justify-center md:rounded-l-3xl">
+      <div className="bg-white md:w-3/5 p-8 flex flex-col justify-center md:rounded-l-[80px]">
         <h2 className="text-3xl w-full text-center font-bold mb-4">LOGIN</h2>
         <div className="max-w-md w-full mx-auto">
           <Tabs defaultValue="patient" className="w-full mb-6">
@@ -47,7 +48,7 @@ export default function LoginPage() {
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   <Input type="email" placeholder="Email address" />
                   <Input type="password" placeholder="Password" />
-                  <Button className="w-full bg-sky-400 hover:bg-sky-500 text-white">Log in</Button>
+                  <Button className="w-full bg-[--first] hover:bg-[--second] text-white">Log in</Button>
                 </form>
                 <div className="text-center">
                   <Link href="/forgot-password" className="text-sm text-indigo-600 hover:underline">
@@ -84,7 +85,7 @@ export default function LoginPage() {
                 <form className="space-y-4">
                   <Input type="email" placeholder="Email address" />
                   <Input type="password" placeholder="Password" />
-                  <Button className="w-full bg-sky-400 hover:bg-sky-500 text-white">Log in</Button>
+                  <Button className="w-full bg-[--first] hover:bg-[--second] text-white">Log in</Button>
                 </form>
                 <div className="text-center">
                   <Link href="/forgot-password" className="text-sm text-indigo-600 hover:underline">
@@ -121,7 +122,7 @@ export default function LoginPage() {
                 <form className="space-y-4">
                   <Input type="email" placeholder="Email address" />
                   <Input type="password" placeholder="Password" />
-                  <Button className="w-full bg-sky-400 hover:bg-sky-500 text-white">Log in</Button>
+                  <Button className="w-full bg-[--first] hover:bg-[--second] text-white">Log in</Button>
                 </form>
                 <div className="text-center">
                   <Link href="/forgot-password" className="text-sm text-indigo-600 hover:underline">

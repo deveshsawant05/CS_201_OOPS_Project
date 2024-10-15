@@ -10,11 +10,17 @@ import { CalendarDays, Clock, Hospital, Search, User, Activity, Pill, FileText, 
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Switch } from "@/components/ui/switch"
 
+import { Montserrat } from "next/font/google";
+const montserratFont = Montserrat({
+  weight: ["100", "200", "400", "600"],
+  subsets: ["latin"],
+});
+
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex">
+    <div className= {`${montserratFont.className} min-h-screen bg-background text-foreground flex `}>
       {/* Sidebar */}
       <aside className={`bg-muted w-64 p-4 space-y-4 ${sidebarOpen ? 'block' : 'hidden'} md:block`}>
         <div className="flex items-center justify-between mb-4">
