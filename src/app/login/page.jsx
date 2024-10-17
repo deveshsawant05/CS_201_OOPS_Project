@@ -9,6 +9,10 @@ import Logo from "@/components/Logo"
 
 import { Montserrat } from "next/font/google";
 import { useRouter } from 'next/navigation'; // Import useRouter from Next.js
+import { login } from "./actions"
+
+import Error from "@/components/Error"
+import { useState } from "react"
 
 const montserratFont = Montserrat({
     weight: ["100", "200", "400", "600"],
@@ -16,14 +20,34 @@ const montserratFont = Montserrat({
 });
 
 export default function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter(); // Initialize the router
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
-    // Perform any necessary data handling or validation here
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
 
-    // Redirect to /dashboard after form submission
-    router.push('/dashboard');
+    const formData = new FormData();
+    formData.set('email', email);
+    formData.set('password', password);
+
+    const response = await login(formData);  // Call the server-side action
+
+    if (response.error) {
+      // Handle error by setting the error state
+      setError(response.error);
+
+    } else if (response.success) {
+      // Handle success (e.g., redirect to dashboard)
+      router.push("/dashboard");  // Redirect to dashboard
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -44,11 +68,14 @@ export default function LoginPage() {
               <TabsTrigger value="admin">Admin</TabsTrigger>
             </TabsList>
             <TabsContent value="patient">
+                  {error ? <Error errorMessage={error} /> : null}
               <div className="mt-6 space-y-6">
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                  <Input type="email" placeholder="Email address" />
-                  <Input type="password" placeholder="Password" />
-                  <Button className="w-full bg-[--first] hover:bg-[--second] text-white">Log in</Button>
+                <form className="space-y-4" onSubmit={handleLogin}>
+                  <Input type="email" name="email" placeholder="Email address" required           value={email}
+          onChange={(e) => setEmail(e.target.value)}/>
+                  <Input type="password" name="password" placeholder="Password" required           value={password}
+          onChange={(e) => setPassword(e.target.value)} />
+                  <Button className="w-full bg-[--first] hover:bg-[--second] text-white" type="submit">Log in {loading ? 'Logging in...' : null}</Button>
                 </form>
                 <div className="text-center">
                   <Link href="/forgot-password" className="text-sm text-indigo-600 hover:underline">
