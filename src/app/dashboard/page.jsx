@@ -52,7 +52,7 @@ export default function Dashboard() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-4 space-y-4">
+      <main className={`${montserratFont.className} flex-1 p-4 space-y-4`}>
         <header className="flex justify-between items-center">
           <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)} className="md:hidden">
             <Menu className="h-6 w-6" />
