@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'; // Import useRouter from Next.js
 import { login } from "./actions"
 
 import Error from "@/components/Error"
+import { Loader } from "@/components/Loader"
 import { useState } from "react"
 
 const montserratFont = Montserrat({
@@ -75,7 +76,7 @@ export default function LoginPage() {
           onChange={(e) => setEmail(e.target.value)}/>
                   <Input type="password" name="password" placeholder="Password" required           value={password}
           onChange={(e) => setPassword(e.target.value)} />
-                  <Button className="w-full bg-[--first] hover:bg-[--second] text-white" type="submit">Log in {loading ? 'Logging in...' : null}</Button>
+                  <Button className="w-full bg-[--first] hover:bg-[--second] text-white" type="submit">Log in </Button>
                 </form>
                 <div className="text-center">
                   <Link href="/forgot-password" className="text-sm text-indigo-600 hover:underline">
